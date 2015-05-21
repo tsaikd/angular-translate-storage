@@ -1,7 +1,8 @@
 angular
 
 .module("angular-translate-storage", [
-	"LocalStorageModule"
+	"LocalStorageModule",
+	"pascalprecht.translate"
 ])
 
 .factory("translateStorage"

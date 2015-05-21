@@ -11,13 +11,15 @@ angular-translate-storage [![GitHub version](https://badge.fury.io/gh/tsaikd%2Fa
 ## Usage
 
 * Include javascript files in your application
-	* `angular-translate.js`
+	* `angular.js`
 	* `angular-local-storage.js`
+	* `angular-translate.js`
 	* `angular-translate-storage.js`
 
 ```html
-<script src="angular-translate.js"></script>
+<script src="angular.js"></script>
 <script src="angular-local-storage.js"></script>
+<script src="angular-translate.js"></script>
 <script src="angular-translate-storage.js"></script>
 ```
 
