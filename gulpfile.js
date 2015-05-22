@@ -5,6 +5,7 @@ var gulp = require("gulp"),
 	concat = require("gulp-concat"),
 	uglifyjs = require("gulp-uglifyjs"),
 	replace = require("gulp-replace"),
+	karma = require("gulp-karma"),
 	run = require("gulp-run");
 
 var pkg = require("./package.json"),
@@ -17,7 +18,14 @@ var banner = [
 		" */\n\n"
 	].join("\n"),
 	paths = {
-		"js": ["!**/*.tmp.js", "!**/*.test.js", "!"+root+"/src/**/*.min.js", root+"/src/**/*.js"]
+		"js": ["!**/*.tmp.js", "!**/*.test.js", "!"+root+"/src/**/*.min.js", root+"/src/**/*.js"],
+		"test": ["!**/*.tmp.js",
+			"lib/angular/angular.js",
+			"lib/angular-local-storage/angular-local-storage.js",
+			"lib/angular-mocks/angular-mocks.js",
+			"lib/angular-translate/angular-translate.js",
+			"angular-translate-storage.js",
+			"src/**/*.spec.js"]
 	},
 	ngModule = pkg.name;
 
@@ -42,6 +50,15 @@ gulp.task("compress", function(done) {
 		}))
 		.pipe(header(banner))
 		.pipe(gulp.dest(root))
+		.on("end", done);
+});
+
+gulp.task("test", function(done) {
+	gulp.src(paths.test)
+		.pipe(karma({
+			configFile: "karma.config.js",
+			action: "run"
+		}))
 		.on("end", done);
 });
 
